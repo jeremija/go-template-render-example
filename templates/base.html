@@ -1,0 +1,21 @@
+{{define "header"}}
+<!DOCTYPE html>
+<html>
+<head>
+  <meta property="og:title" content="{{.Meta.Title}}">
+  <meta property="og:description" content="{{.Meta.Description}}">
+  {{if .Meta.ImageURL}}
+    <meta property="og:image" content="{{.Meta.ImageURL}}">
+    <meta name="twitter:image" content="{{.Meta.ImageURL}}">
+  {{end}}
+  <meta property="og:url" content="{{.Meta.URL}}">
+  <meta name="twitter:title" content="{{.Meta.Title}}">
+  <meta name="twitter:description" content="{{.Meta.Description}}">
+</head>
+<body>
+{{end}}
+
+{{define "footer"}}
+</body>
+</html>
+{{end}}
