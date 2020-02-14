@@ -50,11 +50,12 @@ func Render(h PageHandler) http.HandlerFunc {
 		// TODO write to buffer pool instead of directly to http
 		var b bytes.Buffer
 		err = template.Execute(&b, dataMap)
-		fmt.Printf("rendered: %s\n", b.String())
-		io.Copy(w, &b)
 		if err != nil {
-			fmt.Printf("Error rendering template: %s\n", err)
+			fmt.Printf("Error executing template: %s\n", err)
+			http.Error(w, ErrRenderingPage, http.StatusInternalServerError)
+			return
 		}
+		io.Copy(w, &b)
 	}
 	return http.HandlerFunc(fn)
 }
